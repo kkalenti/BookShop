@@ -1,0 +1,24 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@foreach (var item in @Model)
+{
+    <div>
+        <h2>@item.Title</h2>
+    </div>
+    <div>
+        <i>@item.Author</i>
+    </div>
+    <div>
+        <span>@item.PublishDate</span>
+    </div>
+    <div>
+        <strong>@item.Price</strong>
+    </div>
+    <div>
+        <span>@item.Description</span>
+    </div>
+}

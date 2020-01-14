@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj": {}
+    "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj": {}
   },
   "projects": {
-    "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj": {
+    "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj",
+        "projectUniqueName": "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj",
         "projectName": "BookStore",
-        "projectPath": "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj",
+        "projectPath": "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj",
         "packagesPath": "C:\\Users\\Xiaomi\\.nuget\\packages\\",
-        "outputPath": "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\obj\\",
+        "outputPath": "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -40,6 +40,30 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.StaticFiles": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
