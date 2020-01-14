@@ -1,3 +1,5 @@
+using BookStore.Models;
+using BookStore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +14,8 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
-            
+            services.AddSingleton<IRepository<Book>, MockBooksRepository>(); //It is a VERY BAD CODE!!
+            services.AddTransient<IRepository<Carousel>, MockCarouselRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

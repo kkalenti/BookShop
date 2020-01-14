@@ -28,11 +28,10 @@ namespace BookStore.Controllers
         /// <summary>
         /// Constructor for <see cref="HomeController"/> class
         /// </summary>
-        public HomeController()
+        public HomeController(IRepository<Book> book, IRepository<Carousel> carousel)
         {
-            _book = new List<Book>();
-            _bookRepo = new MockBooksRepository();
-            _carouselRepo = new MockCarouselRepository();
+            _bookRepo = book;
+            _carouselRepo = carousel;
         }
 
         /// <summary>
