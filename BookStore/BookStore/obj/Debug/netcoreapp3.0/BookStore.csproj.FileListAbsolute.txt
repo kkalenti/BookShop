@@ -120,3 +120,5 @@ C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Bo
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\BookStore.Views.pdb
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\About.cshtml.g.cs
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\Contact.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\Addbook.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs

@@ -1,38 +1,76 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BookStore.Models;
+using BookStore.Services;
+using BookStore.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace BookStore.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// The list of books
+        /// </summary>
         private List<Book> _book;
 
+        /// <summary>
+        /// Interface for Book Mock
+        /// </summary>
+        private readonly IRepository<Book> _bookRepo;
+
+        /// <summary>
+        /// Interface for Carousel Mock
+        /// </summary>
+        private readonly IRepository<Carousel> _carouselRepo;
+
+        /// <summary>
+        /// Constructor for <see cref="HomeController"/> class
+        /// </summary>
         public HomeController()
         {
-            _book = new List<Book>
+            _book = new List<Book>();
+            _bookRepo = new MockBooksRepository();
+            _carouselRepo = new MockCarouselRepository();
+        }
+
+        /// <summary>
+        /// Get method to add book
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Addbook()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Post method to add book
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Addbook(Book book)
+        {
+            if (ModelState.IsValid)
             {
-                new Book()
+                var item = new Book()
                 {
-                    Title = "C# 8.0 and .NET Core 3.0 - Modern Cross-Platform Development",
-                    Description = "Learn the fundamentals, practical applications, and latest" +
-                                  " features of C# 8.0 and .NET Core 3.0 from expert teacher Mark J. Price.",
-                    Author = "Mark J. Price",
-                    PublishDate = "Oct, 2019",
-                    Price = 35.99,
-                    Image = "image1"
-                },
-                new Book()
-                {
-                    Title = "Pro ASP.NET Core MVC 2, 7th ed. Edition",
-                    Description = "Develop cloud-ready web applications using Microsoft's latest framework," +
-                                  "ASP.NET Core MVC 2",
-                    Author = "Adam Freeman",
-                    PublishDate = "October 25, 2017",
-                    Price = 20.79,
-                    Image = "image2"
-                }
-            };
+                    Id = _bookRepo.GetAll().Max(x => x.Id) + 1,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Author = book.Author,
+                    PublishDate = book.PublishDate,
+                    Price = book.Price
+                };
+                _bookRepo.Add(item);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
 
         /// <summary>
@@ -41,7 +79,12 @@ namespace BookStore.Controllers
         /// <returns>Index view</returns>
         public IActionResult Index()
         {
-            return View(_book);
+            var model = new HomeIndexViewModel()
+            {
+                Books = _bookRepo.GetAll(),
+                Carousels = _carouselRepo.GetAll()
+            };
+            return View(model);
         }
 
         /// <summary>

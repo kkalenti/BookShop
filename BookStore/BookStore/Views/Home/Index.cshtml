@@ -1,10 +1,20 @@
-﻿@model IEnumerable<BookStore.Models.Book>
+﻿@model BookStore.ViewModels.Home.HomeIndexViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-@foreach (var item in @Model)
+<h2>Carousel</h2>
+@foreach (var item in Model.Carousels)
+{
+    <div>
+        <h2>@item.Title</h2>
+    </div>
+    <span>@item.Description</span>
+}
+<hr/>
+<h2>Book</h2>
+@foreach (var item in Model.Books)
 {
     <div>
         <h2>@item.Title</h2>
