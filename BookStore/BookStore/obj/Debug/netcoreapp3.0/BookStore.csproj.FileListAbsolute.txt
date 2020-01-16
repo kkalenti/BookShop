@@ -122,3 +122,11 @@ C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Ra
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\Contact.cshtml.g.cs
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\Addbook.cshtml.g.cs
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Header.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Footer.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\_Carousel.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\Details.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\Order.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Debug\netcoreapp3.0\Razor\Views\Home\ThankYou.cshtml.g.cs

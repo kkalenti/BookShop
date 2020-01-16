@@ -1,9 +1,27 @@
-﻿@model BookStore.ViewModels.Home.HomeIndexViewModel
+﻿@model HomeIndexViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+@Html.Partial("_Carousel", Model.Carousels)
+
+<h2 class="text text-center">Books' List</h2>
+<div class="container marketing">
+    <div class="row mt-5 mb-2">
+        @foreach (var item in Model.Books)
+        {
+            <div class="col-lg-4">
+                <img class="img-thumbnail" src="~/Images/@item.Image" alt="@item.Title" width="140">
+                <h5>@item.Title</h5>
+                <p><a class="btn btn-secondary" href="/home/details/@item.Id" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+        }
+    </div>
+</div>
+
+
+@*<h1>Index</h1>
 <h2>Carousel</h2>
 @foreach (var item in Model.Carousels)
 {
@@ -30,5 +48,5 @@
     </div>
     <div>
         <span>@item.Description</span>
-    </div>
+    </div>*@
 }

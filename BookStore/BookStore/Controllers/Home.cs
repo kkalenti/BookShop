@@ -103,5 +103,62 @@ namespace BookStore.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Book details page
+        /// </summary>
+        /// <returns>Contact view</returns>
+        public IActionResult Details(int id)
+        {
+            var book = _bookRepo.Get(id);
+            return View(book);
+        }
+
+        [HttpGet]
+        public IActionResult Order(int? id)
+        {
+            if (id != null && id >= 0)
+            {
+                var model = new OrderViewModel()
+                {
+                    BookToOrder = _bookRepo.Get((int)id),
+                    OrderDetails = new Order()
+                    {
+                        BookId = (int)id
+                    }
+                };
+                return View(model);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Order(int id, Order orderDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_bookRepo.GetAll().Count(x => x.Id == orderDetails.BookId) >= 1)
+                {
+                    return RedirectToAction("Thank you");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View(new OrderViewModel()
+                {
+                    OrderDetails = orderDetails,
+                    BookToOrder = _bookRepo.Get(id)
+                });
+            }
+        }
+
+        public IActionResult ThankYou()
+        {
+            return View();
+        }
     }
 }

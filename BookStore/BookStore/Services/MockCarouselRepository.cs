@@ -16,21 +16,21 @@ namespace BookStore.Services
                 Id = 0,
                 Title = "Discount books",
                 Description = "Discount books get them all",
-                ImageUrl = ""
+                ImageUrl = "Carousel1.jpg"
             });
             _carousels.Add(new Carousel()
             {
                 Id = 1,
                 Title = "New books",
                 Description = "All brand new books",
-                ImageUrl = ""
+                ImageUrl = "Carousel2.jpg"
             });
             _carousels.Add(new Carousel()
             {
                 Id =2,
                 Title = "Subscriptions",
                 Description = "Discount on monthly subscriptions",
-                ImageUrl = ""
+                ImageUrl = "Carousel3.jpg"
             });
         }
 
