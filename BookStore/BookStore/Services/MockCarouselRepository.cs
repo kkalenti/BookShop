@@ -44,7 +44,7 @@ namespace BookStore.Services
             return _carousels.ToList();
         }
 
-        public bool Add(Carousel item)
+        public bool Create(Carousel item)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace BookStore.Services
             throw new System.NotImplementedException();
         }
 
-        public bool Edit(Carousel item)
+        public bool Update(Carousel item)
         {
             throw new System.NotImplementedException();
         }

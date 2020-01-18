@@ -16,61 +16,67 @@ namespace BookStore.Controllers
         private List<Book> _book;
 
         /// <summary>
-        /// Interface for Book Mock
+        /// Interface for Book repository
         /// </summary>
         private readonly IRepository<Book> _bookRepo;
 
         /// <summary>
-        /// Interface for Carousel Mock
+        /// Interface for Carousel repository
         /// </summary>
         private readonly IRepository<Carousel> _carouselRepo;
 
         /// <summary>
+        /// Interface for Order repository
+        /// </summary>
+        private readonly IRepository<Order> _ordersRepo;
+
+        /// <summary>
         /// Constructor for <see cref="HomeController"/> class
         /// </summary>
-        public HomeController(IRepository<Book> book, IRepository<Carousel> carousel)
+        public HomeController(IRepository<Book> book, IRepository<Carousel> carousel, IRepository<Order> order)
         {
             _bookRepo = book;
             _carouselRepo = carousel;
+            _ordersRepo = order;
         }
 
-        /// <summary>
-        /// Get method to add book
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public IActionResult Addbook()
-        {
-            return View();
-        }
+        ///// <summary>
+        ///// Get method to add book
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public IActionResult Addbook()
+        //{
+        //    return View();
+        //}
 
-        /// <summary>
-        /// Post method to add book
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult Addbook(Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                var item = new Book()
-                {
-                    Id = _bookRepo.GetAll().Max(x => x.Id) + 1,
-                    Title = book.Title,
-                    Description = book.Description,
-                    Author = book.Author,
-                    PublishDate = book.PublishDate,
-                    Price = book.Price
-                };
-                _bookRepo.Add(item);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View();
-            }
+        ///// <summary>
+        ///// Post method to add book
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public IActionResult Addbook(Book book)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var item = new Book()
+        //        {
+        //            Id = _bookRepo.GetAll().Max(x => x.Id) + 1,
+        //            Title = book.Title,
+        //            Description = book.Description,
+        //            Author = book.Author,
+        //            PublishDate = book.PublishDate,
+        //            Price = book.Price
+        //        };
+        //        _bookRepo.Create(item);
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
             
-        }
+        //}
 
         /// <summary>
         /// The home page
@@ -137,9 +143,12 @@ namespace BookStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_bookRepo.GetAll().Count(x => x.Id == orderDetails.BookId) >= 1)
+                if (_bookRepo.GetAll().Count(x => x.Id == id) >= 1)
                 {
-                    return RedirectToAction("Thank you");
+                    orderDetails.BookId = id;
+                    _ordersRepo.Create(orderDetails);
+                    
+                    return RedirectToAction("ThankYou");
                 }
                 else
                 {
@@ -159,6 +168,11 @@ namespace BookStore.Controllers
         public IActionResult ThankYou()
         {
             return View();
+        }
+
+        public IActionResult OrderList()
+        {
+            return View(_ordersRepo.GetAll());
         }
     }
 }

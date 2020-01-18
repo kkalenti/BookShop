@@ -39,8 +39,7 @@ namespace BookStore.Services
                 {
                     Id = 3,
                     Title = "Pro C# 7: With .NET and .NET Core, 8th ed. Edition",
-                    Description = "This essential classic title provides a comprehensive foundation in the C# " +
-                                  "programming language and the frameworks it lives in.",
+                    Description = "This essential classic title provides a comprehensive foundation in the C# programming language and the frameworks it lives in.",
                     Author = "Andrew Troelsen, Philip Japikse",
                     PublishDate = "November 2017",
                     Price = 38,
@@ -50,10 +49,7 @@ namespace BookStore.Services
                 {
                     Id = 4,
                     Title = "CLR via C# (4th Edition)",
-                    Description = "Dig deep and master the intricacies of the common language runtime, C#, and" +
-                                  " .NET development. Led by programming expert Jeffrey Richter, a longtime" +
-                                  " consultant to the Microsoft .NET team - you’ll gain pragmatic insights for" +
-                                  " building robust, reliable, and responsive apps and components.",
+                    Description = "Dig deep and master the intricacies of the common language runtime, C#, and .NET development. Led by programming expert Jeffrey Richter, a longtime consultant to the Microsoft .NET team - you’ll gain pragmatic insights for building robust, reliable, and responsive apps and components.",
                     Author = "Jeffrey Richter",
                     PublishDate = "November 2012",
                     Price = 55.11,
@@ -63,10 +59,7 @@ namespace BookStore.Services
                 {
                     Id = 5,
                     Title = "C# in Depth, 4th Edition",
-                    Description = "C# in Depth, Fourth Edition is your key to unlocking the powerful new features" +
-                                  " added to the language in C# 5, 6, and 7. Following the expert guidance of C# " +
-                                  "legend Jon Skeet, you'll master asynchronous functions, expression-bodied members," +
-                                  " interpolated strings, tuples, and much more.",
+                    Description = "C# in Depth, Fourth Edition is your key to unlocking the powerful new features added to the language in C# 5, 6, and 7. Following the expert guidance of C# legend Jon Skeet, you'll master asynchronous functions, expression-bodied members, interpolated strings, tuples, and much more.",
                     Author = "Jon Skeet",
                     PublishDate = "March 2019",
                     Price = 34.77,
@@ -138,7 +131,7 @@ namespace BookStore.Services
             return _books.ToList();
         }
 
-        public bool Add(Book item)
+        public bool Create(Book item)
         {
             try
             {
@@ -158,7 +151,7 @@ namespace BookStore.Services
             throw new System.NotImplementedException();
         }
 
-        public bool Edit(Book item)
+        public bool Update(Book item)
         {
             throw new System.NotImplementedException();
         }

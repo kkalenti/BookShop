@@ -20,11 +20,11 @@ namespace BookStore.Services
         IEnumerable<T> GetAll();
 
         /// <summary>
-        /// Add <see cref="item"/> to repository
+        /// Create <see cref="item"/> to repository
         /// </summary>
         /// <param name="item">New item</param>
         /// <returns></returns>
-        bool Add(T item);
+        bool Create(T item);
 
         /// <summary>
         /// Delete <see cref="item"/> from repository
@@ -38,6 +38,6 @@ namespace BookStore.Services
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        bool Edit(T item);
+        bool Update(T item);
     }
 }
