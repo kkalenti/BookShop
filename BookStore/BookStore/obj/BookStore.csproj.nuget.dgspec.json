@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj": {}
+    "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj": {}
   },
   "projects": {
-    "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj": {
+    "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj",
+        "projectUniqueName": "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj",
         "projectName": "BookStore",
-        "projectPath": "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\BookStore.csproj",
+        "projectPath": "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\BookStore.csproj",
         "packagesPath": "C:\\Users\\Xiaomi\\.nuget\\packages\\",
-        "outputPath": "C:\\Other\\lessons\\c#\\BookStore\\BookStore\\obj\\",
+        "outputPath": "C:\\Other\\lessons\\c#\\BookStoreRepo\\BookStore\\BookStore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
