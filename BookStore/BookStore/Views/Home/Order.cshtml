@@ -1,0 +1,97 @@
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+@if (Model?.BookToOrder?.Id >= 0)
+{
+    <section class="jumbotron text-center p-3">
+        <div class="container">
+            <h1>Order</h1>
+            <h1>You have selected the following book.</h1>
+            <hr/>
+            <div class="row m-4">
+                <div class="col-md-4 ">
+                    <img src="~/Images/@Model.BookToOrder.Image" width="200" class="img-fluid" alt="@Model.BookToOrder.Title image"/>
+                </div>
+                <div class="col-md-8 d-flex align-items-center">
+                    <div>
+                        <h2>@Model.BookToOrder.Title</h2>
+                        <h4>Price: $@Model.BookToOrder.Price </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-4">
+                    <form asp-action="Order">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.ClientName" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.ClientName" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.ClientName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.Street" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.Street" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.Street" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.City" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.City" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.City" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.State" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.State" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.State" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.Country" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.Country" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.Country" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.Zip" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.Zip" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.Zip" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.Phone" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.Phone" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.Phone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderDetails.Email" class="control-label"></label>
+                            <input asp-for="@Model.OrderDetails.Email" class="form-control"/>
+                            <span asp-validation-for="@Model.OrderDetails.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+}else
+{
+    <div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <p>
+                You haven't selected ay book or selected book doesn't exist. Please selected a book to purchase before proceeding.
+            </p>
+            <p><a asp-action="Index">Click here to go back to book list</a></p>
+
+        </div>
+    </div>
+    </div>
+}
+
+<div class="col-md-2 text-center">
+    <a asp-action="Index">Back to List</a>
+</div>
+
