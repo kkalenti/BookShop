@@ -47,8 +47,8 @@ namespace BookStore
 
             //using (var scope = app.ApplicationServices.CreateScope())
             //{
-            //    var content = scope.ServiceProvider.GetRequiredService<BookStoreDbContext>();
-            //    DbObjects.Initial(content);
+                //var content = scope.ServiceProvider.GetRequiredService<BookStoreDbContext>();
+                //DbObjects.Initial(content);
             //}
         }
     }

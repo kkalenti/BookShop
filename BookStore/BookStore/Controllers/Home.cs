@@ -122,6 +122,12 @@ namespace BookStore.Controllers
             return View(book);
         }
 
+        public IActionResult SectionDetails(int id)
+        {
+            var section = _sectionsRepo.Get(id);
+            return View(section);
+        }
+
         [HttpGet]
         public IActionResult Order(int? id)
         {

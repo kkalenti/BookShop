@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Services
 {
@@ -20,7 +21,8 @@ namespace BookStore.Services
         {
             if (_context.Sections.Count(x => x.Id == id) > 0)
             {
-                return _context.Sections.FirstOrDefault(x => x.Id == id);
+                return _context.Sections.Include(s=>s.BookSection).ThenInclude(bs=> bs.Book).
+                    FirstOrDefault(x => x.Id == id);
             }
 
             return null;
@@ -28,7 +30,7 @@ namespace BookStore.Services
 
         public IEnumerable<Section> GetAll()
         {
-            return _context.Sections;
+            return _context.Sections.Include(s => s.BookSection).ThenInclude(bs => bs.Book).ToList();
         }
 
         public bool Create(Section item)

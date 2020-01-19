@@ -29,6 +29,53 @@ namespace BookStore.Data
             }
 
             context.SaveChanges();
+
+            if (!context.Sections.FirstOrDefault().BookSection.Any()) //TODO: Fix this code...
+            {
+                context.Sections.FirstOrDefault(s => s.Title == "Discount books")
+                    ?.BookSection.Add(new BookSection()
+                {
+                    BookId = context.Books.FirstOrDefault(s => s.Title == "C# 8.0 and .NET Core 3.0 - Modern Cross-Platform Development").Id,
+                    SectionId = context.Sections.FirstOrDefault(s => s.Title == "Discount books").Id
+                });
+                context.Sections.FirstOrDefault(s => s.Title == "Discount books")
+                    ?.BookSection.Add(new BookSection()
+                {
+                    BookId = context.Books.FirstOrDefault(s => s.Title == "Pro ASP.NET Core MVC 2, 7th ed. Edition").Id,
+                    SectionId = context.Sections.FirstOrDefault(s => s.Title == "Discount books").Id
+                });
+                context.Sections.FirstOrDefault(s => s.Title == "Discount books")
+                    ?.BookSection.Add(new BookSection()
+                    {
+                        BookId = context.Books.FirstOrDefault(s => s.Title == "Pro C# 7: With .NET and .NET Core, 8th ed. Edition").Id,
+                    SectionId = context.Sections.FirstOrDefault(s => s.Title == "Discount books").Id
+                });
+                context.Sections.FirstOrDefault(s => s.Title == "New books")
+                    ?.BookSection.Add(new BookSection()
+                    {
+                        BookId = context.Books.FirstOrDefault(s => s.Title == "C# in Depth, 4th Edition").Id,
+                    SectionId = context.Sections.FirstOrDefault(s => s.Title == "New books").Id
+                });
+                context.Sections.FirstOrDefault(s => s.Title == "New books")
+                    ?.BookSection.Add(new BookSection()
+                    {
+                        BookId = context.Books.FirstOrDefault(s => s.Title == "ASP.NET Core in Action").Id,
+                    SectionId = context.Sections.FirstOrDefault(s => s.Title == "New books").Id
+                });
+                context.Sections.FirstOrDefault(s => s.Title == "Subscriptions")
+                    ?.BookSection.Add(new BookSection()
+                    {
+                        BookId = context.Books.FirstOrDefault(s => s.Title == "Clean Code: A Handbook of Agile Software Craftsmanship").Id,
+                    SectionId = context.Sections.FirstOrDefault(s => s.Title == "New books").Id
+                });
+                context.Sections.FirstOrDefault(s => s.Title == "Subscriptions").BookSection.Add(new BookSection()
+                {
+                    BookId = context.Books.FirstOrDefault(s => s.Title == "Introduction to Algorithms, 3rd Edition").Id,
+                    SectionId = context.Sections.FirstOrDefault(s => s.Title == "New books").Id
+                });
+            }
+
+            context.SaveChanges();
         }
 
         /// <summary>
