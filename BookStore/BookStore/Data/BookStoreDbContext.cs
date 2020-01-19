@@ -15,6 +15,6 @@ namespace BookStore.Data
 
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<Sections> Sections { get; set; }
+        public DbSet<Section> Sections { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Class for different sections in the store (example: new books, subscriptions, etc)
     /// </summary>
-    public class Sections
+    public class Section
     {
         /// <summary>
         /// Section id

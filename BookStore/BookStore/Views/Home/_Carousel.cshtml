@@ -28,12 +28,12 @@
                 <div class="carousel-caption d-none d-md-block">
                     <div class="row" style="padding-top:25px">
                         <div class="col-lg-4">
-                            <img src="~/Images/@item.ImageUrl" class="img-fluid" width="400" alt="@item.Title"/>
+                            <img src="~/Images/@item.ImageUrl" class="img-fluid" width="400" alt="@item?.Section.Title" />
                         </div>
                         <div class="col-lg-8">
                             <div class="carousel-caption text-left">
-                                <h1>@item.Title.</h1>
-                                <p>@item.Description ...</p>
+                                <h1>@item?.Section.Title.</h1>
+                                <p>@item?.Section.Description ...</p>
                                 <p><a class="btn btn-lg btn-primary" href="#" role="button">Read More</a></p>
                             </div>
                         </div>

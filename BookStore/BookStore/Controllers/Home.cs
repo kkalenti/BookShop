@@ -11,11 +11,6 @@ namespace BookStore.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// The list of books
-        /// </summary>
-        private List<Book> _book;
-
-        /// <summary>
         /// Interface for Book repository
         /// </summary>
         private readonly IRepository<Book> _bookRepo;
@@ -31,52 +26,59 @@ namespace BookStore.Controllers
         private readonly IRepository<Order> _ordersRepo;
 
         /// <summary>
+        /// Interface for Sections repository
+        /// </summary>
+        private readonly IRepository<Section> _sectionsRepo;
+
+        /// <summary>
         /// Constructor for <see cref="HomeController"/> class
         /// </summary>
-        public HomeController(IRepository<Book> book, IRepository<Carousel> carousel, IRepository<Order> order)
+        public HomeController(IRepository<Book> book, IRepository<Carousel> carousel, IRepository<Order> order,
+            IRepository<Section> section)
         {
             _bookRepo = book;
             _carouselRepo = carousel;
             _ordersRepo = order;
+            _sectionsRepo = section;
         }
 
-        ///// <summary>
-        ///// Get method to add book
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpGet]
-        //public IActionResult Addbook()
-        //{
-        //    return View();
-        //}
+        /*/// <summary>
+        /// Get method to add book
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Addbook()
+        {
+            return View();
+        }
 
-        ///// <summary>
-        ///// Post method to add book
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpPost]
-        //public IActionResult Addbook(Book book)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var item = new Book()
-        //        {
-        //            Id = _bookRepo.GetAll().Max(x => x.Id) + 1,
-        //            Title = book.Title,
-        //            Description = book.Description,
-        //            Author = book.Author,
-        //            PublishDate = book.PublishDate,
-        //            Price = book.Price
-        //        };
-        //        _bookRepo.Create(item);
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-            
-        //}
+        /// <summary>
+        /// Post method to add book
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Addbook(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                var item = new Book()
+                {
+                    Id = _bookRepo.GetAll().Max(x => x.Id) + 1,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Author = book.Author,
+                    PublishDate = book.PublishDate,
+                    Price = book.Price
+                };
+                _bookRepo.Create(item);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+
+        }*/
 
         /// <summary>
         /// The home page
