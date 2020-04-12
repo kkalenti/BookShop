@@ -3,6 +3,7 @@ using BookStore.Models;
 using BookStore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +27,7 @@ namespace BookStore
             services.AddDbContext<BookStoreDbContext>(dbContextOptionBuilder =>
                 dbContextOptionBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddScoped<IRepository<Book>, SqlBookRepository>();
             services.AddScoped<IRepository<Carousel>, SqlCarouselRepository>();
             services.AddScoped<IRepository<Order>, SqlOrderRepository>();

@@ -64,7 +64,28 @@ namespace BookStore.Services
 
         public bool Update(Book item)
         {
-            throw new System.NotImplementedException();
+            //TODO: 
+            try
+            {
+                var book = Get(item.Id);
+                if (book != null)
+                {
+                    book.Author = item.Author;
+                    book.BookSection = item.BookSection;
+                    book.Description = item.Description;
+                    book.Image = item.Image;
+                    book.Price = item.Price;
+                    book.PublishDate = item.PublishDate;
+                    book.Title = item.Title;
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
