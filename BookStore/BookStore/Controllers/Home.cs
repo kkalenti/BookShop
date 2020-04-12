@@ -4,6 +4,7 @@ using BookStore.Models;
 using BookStore.Services;
 using BookStore.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace BookStore.Controllers
@@ -181,6 +182,58 @@ namespace BookStore.Controllers
         public IActionResult OrderList()
         {
             return View(_ordersRepo.GetAll());
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            var model = new Registration()
+            {
+                MailAddress = new Address()
+                {
+                    Countries = new List<SelectListItem>()
+                    {
+                        new SelectListItem(text:"First Country", value: "First Country", selected: true),
+                        new SelectListItem(text:"Second Country", value: "First Country"),
+                        new SelectListItem(text:"Third Country", value: "First Country"),
+                        new SelectListItem(text:"Fourth Country", value: "First Country"),
+                        new SelectListItem(text:"Fifth Country", value: "First Country"),
+                        new SelectListItem(text:"Sixth Country", value: "First Country"),
+                        new SelectListItem(text:"Seventh Country", value: "First Country"),
+                    }
+                }
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Register(Registration registration)
+        {
+            List<string> emails = new List<string>()
+            {
+                "test1@test.com"
+            };
+
+            if (emails.Any(x => x.Equals(registration.Email)))
+            {
+                ModelState.AddModelError("Email", "Введенный Email уже существует"); ;
+            }
+
+            return View(registration);
+        }
+
+        public IActionResult EmailValidation(string email)
+        {
+            List<string> emails = new List<string>()
+            {
+                "test1@test.com"
+            };
+
+            if (emails.Any(x => x.Equals(email)))
+            {
+                return Json("Email already exists");
+            }
+            return Json(true);
         }
     }
 }

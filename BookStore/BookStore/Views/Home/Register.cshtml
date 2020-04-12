@@ -1,0 +1,67 @@
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@model Registration
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="text-center">Register using ASP tag helper</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Register">
+                <div class="form-group">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MailAddress.Address1"></label>
+                    <input asp-for="MailAddress.Address1" class="form-control" />
+                    <span asp-validation-for="MailAddress.Address1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MailAddress.Address2"></label>
+                    <input asp-for="MailAddress.Address2" class="form-control" />
+                    <span asp-validation-for="MailAddress.Address2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MailAddress.Country"></label>
+                    <select asp-for="MailAddress.Country" asp-items="Model.MailAddress.Countries" class="form-control"></select>
+                    <span asp-validation-for="MailAddress.Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MailAddress.State"></label>
+                    <input asp-for="MailAddress.State" class="form-control" />
+                    <span asp-validation-for="MailAddress.State" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MailAddress.City"></label>
+                    <input asp-for="MailAddress.City" class="form-control" />
+                    <span asp-validation-for="MailAddress.City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MailAddress.Zip"></label>
+                    <input asp-for="MailAddress.Zip" class="form-control" />
+                    <span asp-validation-for="MailAddress.Zip" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-dark" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
