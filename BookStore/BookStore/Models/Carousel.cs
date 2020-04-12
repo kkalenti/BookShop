@@ -13,16 +13,10 @@
         /// <summary>
         /// Image for carousel element
         /// </summary>
-        public string ImageUrl { get; set; } 
+        public string ImageUrl { get; set; }
 
-        /// <summary>
-        /// Carousel element title
-        /// </summary>
-        public string Title { get; set; }
+        public int SectionId { get; set; }
 
-        /// <summary>
-        /// Carousel element description
-        /// </summary>
-        public string Description { get; set; }
+        public Section Section { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.Models
 {
@@ -41,5 +42,18 @@ namespace BookStore.Models
         /// Image for book
         /// </summary>
         public string Image { get; set; }
+
+        /// <summary>
+        /// Binding entity for <see cref="Book"/> and <see cref="Section"/> classes
+        /// </summary>
+        public List<BookSection> BookSection { get; set; }
+
+        /// <summary>
+        /// Constructor of the <see cref="Book"/> class
+        /// </summary>
+        public Book()
+        {
+            BookSection = new List<BookSection>();
+        }
     }
 }

@@ -77,3 +77,4 @@ C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\BookStore.csproj.CopyComplete
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\BookStore.dll
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\BookStore.pdb
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\Razor\Views\Home\SectionDetails.cshtml.g.cs

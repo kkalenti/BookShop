@@ -3,14 +3,16 @@ using BookStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookStore.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200119114906_SecondMigration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,21 +49,6 @@ namespace BookStore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("BookStore.Models.BookSection", b =>
-                {
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SectionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookId", "SectionId");
-
-                    b.HasIndex("SectionId");
-
-                    b.ToTable("BookSection");
                 });
 
             modelBuilder.Entity("BookStore.Models.Carousel", b =>
@@ -147,21 +134,6 @@ namespace BookStore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sections");
-                });
-
-            modelBuilder.Entity("BookStore.Models.BookSection", b =>
-                {
-                    b.HasOne("BookStore.Models.Book", "Book")
-                        .WithMany("BookSection")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookStore.Models.Section", "Section")
-                        .WithMany("BookSection")
-                        .HasForeignKey("SectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BookStore.Models.Carousel", b =>

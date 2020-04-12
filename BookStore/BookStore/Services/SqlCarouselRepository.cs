@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Services
 {
@@ -19,7 +20,7 @@ namespace BookStore.Services
         {
             if (_context.Carousels.Count(x => x.Id == id) > 0)
             {
-                return _context.Carousels.FirstOrDefault(x => x.Id == id);
+                return _context.Carousels.Include(c => c.Section).FirstOrDefault(x => x.Id == id);
             }
 
             return null;
@@ -27,7 +28,7 @@ namespace BookStore.Services
 
         public IEnumerable<Carousel> GetAll()
         {
-            return _context.Carousels;
+            return _context.Carousels.Include(c => c.Section).ToList();
         }
 
         public bool Create(Carousel item)

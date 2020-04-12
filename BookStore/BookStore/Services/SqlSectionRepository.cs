@@ -4,10 +4,11 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Services
 {
-    public class SqlSectionRepository: IRepository<Sections>
+    public class SqlSectionRepository: IRepository<Section>
     {
         private BookStoreDbContext _context;
 
@@ -16,22 +17,23 @@ namespace BookStore.Services
             _context = context;
         }
 
-        public Sections Get(int id)
+        public Section Get(int id)
         {
             if (_context.Sections.Count(x => x.Id == id) > 0)
             {
-                return _context.Sections.FirstOrDefault(x => x.Id == id);
+                return _context.Sections.Include(s=>s.BookSection).ThenInclude(bs=> bs.Book).
+                    FirstOrDefault(x => x.Id == id);
             }
 
             return null;
         }
 
-        public IEnumerable<Sections> GetAll()
+        public IEnumerable<Section> GetAll()
         {
-            return _context.Sections;
+            return _context.Sections.Include(s => s.BookSection).ThenInclude(bs => bs.Book).ToList();
         }
 
-        public bool Create(Sections item)
+        public bool Create(Section item)
         {
             try
             {
@@ -45,7 +47,7 @@ namespace BookStore.Services
             }
         }
 
-        public bool Delete(Sections item)
+        public bool Delete(Section item)
         {
             try
             {
@@ -64,7 +66,7 @@ namespace BookStore.Services
             }
         }
 
-        public bool Update(Sections item)
+        public bool Update(Section item)
         {
             throw new System.NotImplementedException();
         }
