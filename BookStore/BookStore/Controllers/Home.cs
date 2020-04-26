@@ -187,39 +187,14 @@ namespace BookStore.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            var model = new Registration()
-            {
-                MailAddress = new Address()
-                {
-                    Countries = new List<SelectListItem>()
-                    {
-                        new SelectListItem(text:"First Country", value: "First Country", selected: true),
-                        new SelectListItem(text:"Second Country", value: "First Country"),
-                        new SelectListItem(text:"Third Country", value: "First Country"),
-                        new SelectListItem(text:"Fourth Country", value: "First Country"),
-                        new SelectListItem(text:"Fifth Country", value: "First Country"),
-                        new SelectListItem(text:"Sixth Country", value: "First Country"),
-                        new SelectListItem(text:"Seventh Country", value: "First Country"),
-                    }
-                }
-            };
-            return View(model);
+            var model = new Registration();
+            return View("Register" ,model);
         }
 
         [HttpPost]
         public IActionResult Register(Registration registration)
         {
-            List<string> emails = new List<string>()
-            {
-                "test1@test.com"
-            };
-
-            if (emails.Any(x => x.Equals(registration.Email)))
-            {
-                ModelState.AddModelError("Email", "Введенный Email уже существует"); ;
-            }
-
-            return View(registration);
+            return View("Register",registration);
         }
 
         public IActionResult EmailValidation(string email)
@@ -229,7 +204,7 @@ namespace BookStore.Controllers
                 "test1@test.com"
             };
 
-            if (emails.Any(x => x.Equals(email)))
+            if (emails.Exists(x => x.Equals(email)))
             {
                 return Json("Email already exists");
             }

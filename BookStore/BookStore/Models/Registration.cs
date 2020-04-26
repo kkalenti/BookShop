@@ -27,7 +27,6 @@ namespace BookStore.Models
         /// <summary>
         /// Email for user
         /// </summary>
-        [EmailAddress]
         [Required]
         [Remote("EmailValidation", "Home")]
         public string Email { get; set; }

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="text-center">Register using ASP tag helper</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+            {
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("FirstName","FirstName", new {@class = "custom-control-label-label"})
+                    @Html.TextBox("FirstName","", new {@class = "form-control", placeholder = "FirstName"})
+                    @Html.ValidationMessage("FirstName", "", new {@class="text-danger"})
+                </div>
+                <div class="form-group">
+                    @Html.Label("LastName", "LastName", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("LastName", "", new { @class = "form-control", placeholder = "LastName" })
+                    @Html.ValidationMessage("LastName", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Email", "Email", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("Email", "", new { @class = "form-control", placeholder = "Email" })
+                    @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("MailAddress.Address1", "MailAddress.Address1", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("MailAddress.Address1", "", new { @class = "form-control", placeholder = "MailAddress.Address1" })
+                    @Html.ValidationMessage("MailAddress.Address1", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("MailAddress.Address2", "MailAddress.Address2", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("MailAddress.Address2", "", new { @class = "form-control", placeholder = "MailAddress.Address2" })
+                    @Html.ValidationMessage("MailAddress.Address2", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("MailAddress.Country", "MailAddress.Country", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("MailAddress.Country", "", new { @class = "form-control", placeholder = "MailAddress.Country" })
+                    @Html.ValidationMessage("MailAddress.Country", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("MailAddress.State", "MailAddress.State", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("MailAddress.State", "", new { @class = "form-control", placeholder = "MailAddress.State" })
+                    @Html.ValidationMessage("MailAddress.State", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("MailAddress.City", "MailAddress.City", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("MailAddress.City", "", new { @class = "form-control", placeholder = "MailAddress.City" })
+                    @Html.ValidationMessage("MailAddress.City", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("MailAddress.Zip", "MailAddress.Zip", new { @class = "custom-control-label-label" })
+                    @Html.TextBox("MailAddress.Zip", "", new { @class = "form-control", placeholder = "MailAddress.Zip" })
+                    @Html.ValidationMessage("MailAddress.Zip", "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-dark" />
+                </div>
+            }
+            </div>
+    </div>
+</div>
