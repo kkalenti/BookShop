@@ -1,0 +1,68 @@
+﻿@page
+@using BookStore.Pages
+@model ListBooksModel
+@{
+    ViewData["Title"] = "ListBooks";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="text-center">List of all books</h2>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(x => x.Books[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.Books[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.Books[0].Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.Books[0].PublishDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.Books[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.Books[0].Image)
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Books)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Author)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.PublishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Image)
+                    </td>
+                    <td>
+                        <a asp-page="./EditBook" asp-route-id="@item.Id">Edit</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
