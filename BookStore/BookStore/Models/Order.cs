@@ -40,5 +40,7 @@ namespace BookStore.Models
         [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
 
+        public User User { get; set; }
+
     }
 }

@@ -3,6 +3,7 @@ using BookStore.Models;
 using BookStore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,8 @@ namespace BookStore
             services.AddDbContext<BookStoreDbContext>(dbContextOptionBuilder =>
                 dbContextOptionBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddAuthentication();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<BookStoreDbContext>();
             services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddScoped<IRepository<Book>, SqlBookRepository>();
             services.AddScoped<IRepository<Carousel>, SqlCarouselRepository>();
@@ -43,15 +46,23 @@ namespace BookStore
                 app.UseDeveloperExceptionPage();
             }
 
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+
+                if (ctx.Response.StatusCode == 404 && !ctx.Response.HasStarted)
+                {
+                    //Re-execute the request so the user gets the error page
+                    string originalPath = ctx.Request.Path.Value;
+                    ctx.Items["originalPath"] = originalPath;
+                    ctx.Request.Path = "/Error/PageNotFound";
+                    await next();
+                }
+            });
+
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes => { routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"); });
-
-            //using (var scope = app.ApplicationServices.CreateScope())
-            //{
-                //var content = scope.ServiceProvider.GetRequiredService<BookStoreDbContext>();
-                //DbObjects.Initial(content);
-            //}
         }
     }
 }

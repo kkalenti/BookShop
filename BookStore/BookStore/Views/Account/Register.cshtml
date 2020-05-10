@@ -1,0 +1,63 @@
+﻿@model BookStore.ViewModels.Account.RegistrationViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "Auth/_AuthLayout";
+}
+
+    <body class="bg-gradient-primary">
+
+        <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                </div>
+                                <div asp-validation-summary="ModelOnly" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></div>
+                                <form asp-action="Register" class="user">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input asp-for="FirstName" class="form-control form-control-user" placeholder="First Name">
+                                            <span asp-validation-for="FirstName" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input asp-for="LastName" class="form-control form-control-user" placeholder="Last Name" required="required">
+                                            <span asp-validation-for="LastName" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="UserName" class="form-control form-control-user" placeholder="Email address" required="required">
+                                        <span asp-validation-for="UserName" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input asp-for="Password" class="form-control form-control-user" placeholder="Password" required="required">
+                                            <span asp-validation-for="Password" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input asp-for="ConfirmPassword" class="form-control form-control-user" placeholder="Repeat Password" required="required">
+                                            <span asp-validation-for="ConfirmPassword" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block" />
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="login.html">Already have an account? Login!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    
