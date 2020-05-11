@@ -14,11 +14,13 @@ namespace BookStore.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly ILogger<AccountController> _logger;
+        private readonly SignInManager<User> _signInManager;
 
-        public AccountController(UserManager<User> userManager, ILogger<AccountController> logger)
+        public AccountController(UserManager<User> userManager, ILogger<AccountController> logger, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _logger = logger;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -58,6 +60,46 @@ namespace BookStore.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult LogIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LogIn(LogInViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    if (Request.Query.Keys.Contains("ReturnUrl"))
+                    {
+                        return Redirect(Request.Query["ReturnUrl"].FirstOrDefault());
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Failed to login");
+                }
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

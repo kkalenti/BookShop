@@ -1,6 +1,13 @@
-﻿<header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/home/index">BookStore</a>
+﻿@using Microsoft.AspNetCore.Identity
+<header>
+    <nav class="navbar navbar-expand navbar-light bg-white fixed-top topbar mb-4 shadow">
+        <a class="navbar-brand d-flex align-items-center justify-content-center m-0" href="/home/index">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">BookStore</div>
+        </a>
+        <div class="topbar-divider d-none d-sm-block"></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,5 +24,46 @@
                 </li>
             </ul>
         </div>
+        <ul class="navbar-nav mr-auto float-right">
+            <li class="nav-item dropdown arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello <strong>@User.Identity.Name</strong></span>
+                        <img class="img-profile rounded-circle" src="https://source.unsplash.com/random/60x60">
+                    }
+                    else
+                    {
+                        <i class="fa fa-sign-in-alt"></i>
+                    }
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="dropdown-item" href="">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="dropdown-item" href="@Url.Action("Register","Account")">
+                            <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+                            SignIn
+                        </a>
+                        <a class="dropdown-item" href="@Url.Action("LogIn","Account")">
+                            <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            LogIn
+                        </a>
+                    }
+                </div>
+            </li>
+        </ul>
     </nav>
 </header>
