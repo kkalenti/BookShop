@@ -23,11 +23,6 @@ namespace BookStore.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult Register()
         {
@@ -49,6 +44,8 @@ namespace BookStore.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _signInManager.SignInAsync(user, false);
+                    await _userManager.AddToRoleAsync(user, "User");
                     return RedirectToAction("Index", "Home");
                 }
                 else

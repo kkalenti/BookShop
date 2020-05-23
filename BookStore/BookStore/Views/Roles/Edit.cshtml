@@ -1,0 +1,32 @@
+﻿@model BookStore.ViewModels.Roles.RolesViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>RolesViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" class="user">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="Name" class="control-label"></label>*@
+                <input asp-for="Name" class="form-control form-control-user" placeholder="Name" />
+                <input asp-for="Id" type="hidden"/>
+                <span asp-validation-for="Name" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary btn-user" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,27 @@
+﻿@model BookStore.ViewModels.Roles.RolesViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete &laquo @Html.DisplayFor(model => model.Name) &raquo role?</h3>
+<div>
+    <hr />
+    @*<dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>*@
+
+    <form asp-action="Delete" class="user">
+        <input type="submit" value="Delete" class="btn btn-danger btn-user" />&nbsp | &nbsp
+        <input type="hidden" asp-for="Id" />
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

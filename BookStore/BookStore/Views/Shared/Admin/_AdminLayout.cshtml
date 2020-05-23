@@ -21,19 +21,19 @@
 </head>
     <body id="page-top">
     <div id="wrapper">
-            <partial name="~/Views/Shared/Admin/_SideBar.cshtml"/>
-            <div id="content-wrapper" class="d-flex flex-column">
-                <partial name="~/Views/Shared/Admin/_Header.cshtml"/>
+        <partial name="~/Views/Shared/Admin/_SideBar.cshtml"/>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <partial name="~/Views/Shared/Admin/_Header.cshtml" />
                 <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <partial name="~/Views/Shared/Admin/_PageHeading.cshtml"/>
                     @RenderBody()
                 </div>
+            </div>
             <partial name="~/Views/Shared/Admin/_Footer.cshtml"/>
         </div>
     </div>
     
-
+        
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -43,13 +43,15 @@
     <partial name="~/Views/Shared/Admin/_LogoutModal.cshtml"/>
 
     <!-- Bootstrap core JavaScript-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
-        <script src="~/Js/bootstrap/bootstrap.js"></script>
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>*@
+    
+    <script src="~/Js/jquery/jquery.min.js"></script>
+    <script src="~/Js/bootstrap/bootstrap.js"></script>
         
         <!-- Core plugin JavaScript-->
         <script src="~/Js/jquery-easing/jquery.easing.js"></script>
-        <script src="~/Js/datatables/dataTables.bootstrap4.js"></script>
-        <script src="~/Js/datatables/jquery.dataTables.js"></script>
+        @*<script src="~/Js/datatables/dataTables.bootstrap4.js"></script>*@
+        @*<script src="~/Js/datatables/jquery.dataTables.js"></script>*@
         
         <!-- Custom scripts for all pages-->
         <script src="~/Js/admin/sb-admin-2.js"></script>

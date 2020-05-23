@@ -203,3 +203,6 @@ C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\Razor\Views\Shared\Auth\_AuthLayout.cshtml.g.cs
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\Razor\Views\Shared\Components\Address\Default.cshtml.g.cs
 C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\BookStore.genruntimeconfig.cache
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\Razor\Views\Account\LogIn.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\Razor\Views\Shared\Admin\_LogoutModal.cshtml.g.cs
+C:\Other\lessons\c#\BookStoreRepo\BookStore\BookStore\obj\Release\netcoreapp3.0\Razor\Views\Roles\Index.cshtml.g.cs

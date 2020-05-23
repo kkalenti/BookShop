@@ -29,6 +29,7 @@ namespace BookStore
                 dbContextOptionBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication();
+            services.AddScoped<RoleManager<IdentityRole>>();
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<BookStoreDbContext>();
             services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddScoped<IRepository<Book>, SqlBookRepository>();

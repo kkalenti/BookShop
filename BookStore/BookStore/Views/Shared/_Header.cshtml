@@ -2,9 +2,6 @@
 <header>
     <nav class="navbar navbar-expand navbar-light bg-white fixed-top topbar mb-4 shadow">
         <a class="navbar-brand d-flex align-items-center justify-content-center m-0" href="/home/index">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
-            </div>
             <div class="sidebar-brand-text mx-3">BookStore</div>
         </a>
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -14,13 +11,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home/index">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-dark" href="/home/index">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About us</a>
+                    <a class="nav-link text-dark" href="#">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link text-dark" href="#">Contact</a>
                 </li>
             </ul>
         </div>
@@ -41,11 +38,18 @@
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a class="dropdown-item" href="">
+                        <a class="dropdown-item" href="dsf/dwa">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
                         </a>
                         <div class="dropdown-divider"></div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="dropdown-item" href="@Url.Action("Index","Admin")">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Admin page
+                            </a>
+                        }
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout

@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Diag\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
@@ -32,6 +33,14 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\Js\jquery\jquery.js" />
+    <None Include="wwwroot\Js\jquery\jquery.min.js" />
+    <None Include="wwwroot\Js\jquery\jquery.min.map" />
+    <None Include="wwwroot\Js\jquery\jquery.slim.js" />
+    <None Include="wwwroot\Js\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\Js\jquery\jquery.slim.min.map" />
   </ItemGroup>
 
 </Project>
