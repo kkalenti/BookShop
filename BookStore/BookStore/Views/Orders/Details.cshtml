@@ -1,0 +1,58 @@
+﻿@model BookStore.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+    var IsAdmin = User.IsInRole("Admin");
+    if (IsAdmin)
+    {
+        Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<div class="container">
+<div class="row" >
+    <h1>Details</h1>
+
+    <div>
+        <h4>Order</h4>
+        <hr/>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Book.Title)
+            </dt>
+            <dd class="col-sm-10">
+                <strong>@Html.DisplayFor(model => model.Book.Title)</strong> - by @Html.DisplayFor(model => model.Book.Author) - <i> @Html.DisplayFor(model => model.Book.Price)</i>;
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClientName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ClientName)
+            </dd>
+            <dt class="col-sm-2">
+                Address
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Street), @Html.DisplayFor(model => model.City),
+                @Html.DisplayFor(model => model.State)
+            </dd>
+            <dd class="col-sm-10 offset-2">
+                @Html.DisplayFor(model => model.Country), @Html.DisplayFor(model => model.Zip)
+            </dd>
+            <dd class="col-sm-10 offset-2">
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dd class="col-sm-10 offset-2">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Index"><span class="fa fa-arrow-circle-left"></span>Back to List</a>
+    </div>
+</div>
+</div>

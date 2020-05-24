@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.Models
@@ -30,7 +31,8 @@ namespace BookStore.Models
         /// <summary>
         /// Book publish date
         /// </summary>
-        public string PublishDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime PublishDate { get; set; }
 
         /// <summary>
         /// Book price

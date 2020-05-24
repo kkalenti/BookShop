@@ -1,0 +1,51 @@
+﻿@model BookStore.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+    <div class="container">
+        <h1>Details</h1>
+        <div>
+            <h4>Book</h4>
+            <hr />
+            <dl class="row">
+                <dt></dt>
+                <dd class="col-sm-2 col-md-3">
+                    <img  asp-for="@Model.Image" src="~/Images/@Model.Image" style="max-width: 150px"/>
+                </dd>
+                <dd class="col-sm-10 col-md-9">
+                    <h4 class="align-middle"> @Html.DisplayFor(model => model.Title)</h4>
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Author)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Author)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PublishDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PublishDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Index"><span class="fa fa-arrow-circle-left"></span> Back to List</a> |
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        </div>
+    </div>

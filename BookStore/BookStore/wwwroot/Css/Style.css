@@ -3,11 +3,9 @@
 /* Padding below the footer and lighter body text */
 
 body {
-	padding-top: 3rem;
 	padding-bottom: 0;
 	color: #5a5a5a;
 }
-
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -24,7 +22,8 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-	height: 25rem;
+	/*height: 25rem;*/
+    height: auto;
 	background-color: #777;
 }
 

@@ -16,28 +16,26 @@
                 @switch (count++)
                 {
                     case 0:
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
+                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-flex w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
                         break;
                     case 1:
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em"></text></svg>
+                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-flex w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em"></text></svg>
                         break;
                     case 2:
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em"></text></svg>
+                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-flex w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em"></text></svg>
                         break;
                 }
-                <div class="carousel-caption d-none d-md-block">
-                    <div class="row" style="padding-top:25px">
-                        <div class="col-lg-4">
+                <div class="carousel-caption row">
+                        <div class="col-sm-12 col-md-5 col-lg-5 d-none d-sm-none d-md-flex d-lg-flex">
                             <img src="~/Images/@item.ImageUrl" class="img-fluid" width="400" alt="@item?.Section.Title" />
                         </div>
-                        <div class="col-lg-8">
-                            <div class="carousel-caption text-left">
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <div class="carousel-caption text-left container-fluid">
                                 <h1>@item?.Section.Title.</h1>
                                 <p>@item?.Section.Description ...</p>
                                 <p><a class="btn btn-lg btn-primary" href="/home/sectiondetails/@item.SectionId" role="button">Read More</a></p>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         }

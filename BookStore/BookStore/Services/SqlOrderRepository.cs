@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Services
 {
@@ -19,7 +20,8 @@ namespace BookStore.Services
         {
             if (_context.Orders.Count(x => x.Id == id) > 0)
             {
-                return _context.Orders.FirstOrDefault(x => x.Id == id);
+                return _context.Orders.Include(x => x.User)
+                    .Include(x => x.Book).FirstOrDefault(x => x.Id == id);
             }
 
             return null;
@@ -27,7 +29,7 @@ namespace BookStore.Services
 
         public IEnumerable<Order> GetAll()
         {
-            return _context.Orders;
+            return _context.Orders.Include(x => x.User).Include(x => x.Book);
         }
 
         public bool Create(Order item)

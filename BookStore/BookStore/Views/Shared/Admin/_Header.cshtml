@@ -19,14 +19,13 @@
     </form>*@
 
     <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto">
+<ul class="navbar-nav ml-auto">
 
-        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        <li class="nav-item dropdown no-arrow d-sm-none">
+    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+    @*<li class="nav-item dropdown no-arrow d-sm-none">
             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
             </a>
-            <!-- Dropdown - Messages -->
             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                     <div class="input-group">
@@ -39,10 +38,10 @@
                     </div>
                 </form>
             </div>
-        </li>
+        </li>*@
 
-        <!-- Nav Item - Alerts -->
-        @*<li class="nav-item dropdown no-arrow mx-1">
+    <!-- Nav Item - Alerts -->
+    @*<li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <span class="badge badge-danger badge-counter">3+</span>
@@ -88,8 +87,8 @@
             </div>
         </li>*@
 
-        <!-- Nav Item - Messages -->
-        @*<li class="nav-item dropdown no-arrow mx-1">
+    <!-- Nav Item - Messages -->
+    @*<li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <span class="badge badge-danger badge-counter">7</span>
@@ -142,50 +141,65 @@
             </div>
         </li>*@
 
-        @*<div class="topbar-divider d-none d-sm-block"></div>*@
+    @*<div class="topbar-divider d-none d-sm-block"></div>*@
 
-        <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello <strong>@User.Identity.Name</strong></span>
-                        <img class="img-profile rounded-circle" src="https://source.unsplash.com/random/60x60">
-                    }
-                    else
-                    {
-                        <i class="fa fa-sign-in-alt"></i>
-                    }
+    <!-- Nav Item - User Information -->
+    <li class="nav-item dropdown arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello <strong>@User.Identity.Name</strong></span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/random/60x60">
+            }
+            else
+            {
+                <i class="fa fa-sign-in-alt"></i>
+            }
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="dropdown-item" href="@Url.Action("Profile","User")">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a class="dropdown-item" href="@Url.Action("Profile","User")">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
-                        </a>
-                    }
-                    else
-                    {
-                        <a class="dropdown-item" href="@Url.Action("Register","Account")">
-                            <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-                            SignIn
-                        </a>
-                        <a class="dropdown-item" href="@Url.Action("LogIn","Account")">
-                            <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            LogIn
-                        </a>
-                    }
-                </div>
-            </li>
+                <a class="dropdown-item" href="@Url.Action("Index","Orders")">
+                    <i class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Orders
+                </a>
+                <a class="dropdown-item" href="@Url.Action("ChangePassword","User")">
+                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Change password
+                </a>
+                <div class="dropdown-divider"></div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="dropdown-item" href="@Url.Action("Index","Admin")">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Admin page
+                    </a>
+                }
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            }
+            else
+            {
+                <a class="dropdown-item" href="@Url.Action("Register","Account")">
+                    <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+                    SignIn
+                </a>
+                <a class="dropdown-item" href="@Url.Action("LogIn","Account")">
+                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    LogIn
+                </a>
+            }
+        </div>
+    </li>
 
-    </ul>
+</ul>
 
 </nav>
 <!-- End of Topbar -->

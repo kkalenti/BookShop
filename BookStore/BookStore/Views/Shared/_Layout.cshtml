@@ -23,7 +23,9 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <partial name="~/Views/Shared/_Header.cshtml"/>
-                @RenderBody()
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
             </div>
             <partial name="~/Views/Shared/_Footer.cshtml"/>
             <partial name="~/Views/Shared/Admin/_LogoutModal.cshtml"/>

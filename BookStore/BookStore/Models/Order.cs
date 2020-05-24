@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Models
 {
@@ -7,10 +9,15 @@ namespace BookStore.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please select a book")]
+        [ForeignKey("Book")]
         public int BookId { get; set; }
+
+        [ForeignKey("User")]
+        public string UserId { get; set; }
 
         [Required(ErrorMessage = "Client name is required")]
         [DataType(DataType.Text)]
+        [DisplayName("Client Name")]
         public string ClientName { get; set; }
 
         [Required(ErrorMessage = "Street is required")]
@@ -40,7 +47,8 @@ namespace BookStore.Models
         [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
+        public virtual Book Book { get; set; }
 
     }
 }

@@ -2,7 +2,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-action="Index" asp-controller="Home">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -14,7 +14,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" asp-action="Index" asp-controller="Admin">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -34,8 +34,8 @@
             <div id="collapseBooks" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Actions:</h6>
-                    <a class="collapse-item" href="#">List of books</a>
-                    <a class="collapse-item" href="#">Add new book</a>
+                    <a class="collapse-item" asp-action="Index" asp-controller="Books">List of books</a>
+                    <a class="collapse-item" asp-action="Create" asp-controller="Books">Add new book</a>
                 </div>
             </div>
         </li>
@@ -48,8 +48,8 @@
             <div id="collapseOrders" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Actions:</h6>
-                    <a class="collapse-item" href="#">List of orders</a>
-                    <a class="collapse-item" href="#">Add new order</a>
+                    <a class="collapse-item" asp-action="Index" asp-controller="Orders">List of orders</a>
+                    @*<a class="collapse-item" href="#">Add new order</a>*@
                 </div>
             </div>
         </li>
@@ -83,7 +83,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Actions:</h6>
                     <a class="collapse-item" asp-action="Index" asp-controller="Roles">List of roles</a>
-                    @*<a class="collapse-item" href="#">Add new role</a>*@
+                    <a class="collapse-item" asp-action="Create" asp-controller="Roles">Add new role</a>
                 </div>
             </div>
         </li>

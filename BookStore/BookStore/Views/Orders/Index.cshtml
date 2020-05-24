@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Index";
+    var IsAdmin = User.IsInRole("Admin");
+    if (IsAdmin)
+    {
+        Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+    <div class="container">
+        <h1>Orders</h1>
+        @if (Model == null || !Model.Any())
+        {
+            <label>You haven't any orders</label>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    @if (IsAdmin)
+                    {
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                    }
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @if (IsAdmin)
+                        {
+                            <th>
+                                @Html.DisplayFor(modelItem => item.User.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.User.LastName)
+                            </th>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Book.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            @if (IsAdmin)
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id"> | Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </div>

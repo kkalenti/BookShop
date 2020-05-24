@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BookStore.Models;
 using BookStore.Services;
 using BookStore.ViewModels.Home;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -31,16 +33,19 @@ namespace BookStore.Controllers
         /// </summary>
         private readonly IRepository<Section> _sectionsRepo;
 
+        private readonly UserManager<User> _userManager;
+
         /// <summary>
         /// Constructor for <see cref="HomeController"/> class
         /// </summary>
         public HomeController(IRepository<Book> book, IRepository<Carousel> carousel, IRepository<Order> order,
-            IRepository<Section> section)
+            IRepository<Section> section, UserManager<User> userManager)
         {
             _bookRepo = book;
             _carouselRepo = carousel;
             _ordersRepo = order;
             _sectionsRepo = section;
+            _userManager = userManager;
         }
 
         /*/// <summary>
@@ -130,7 +135,7 @@ namespace BookStore.Controllers
         }
 
         [HttpGet]
-        public IActionResult Order(int? id)
+        public async Task<IActionResult> Order(int? id)
         {
             if (id != null && id >= 0)
             {
@@ -139,9 +144,19 @@ namespace BookStore.Controllers
                     BookToOrder = _bookRepo.Get((int)id),
                     OrderDetails = new Order()
                     {
-                        BookId = (int)id
-                    }
+                        BookId = (int)id,
+
+                    },
                 };
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+                    model.OrderDetails.Email = user.Email;
+                    model.OrderDetails.Phone = user.PhoneNumber;
+                    model.OrderDetails.ClientName = user.FirstName + " " + user.LastName;
+                }
+                
                 return View(model);
             }
             return View();
