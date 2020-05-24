@@ -30,7 +30,14 @@ namespace BookStore
 
             services.AddAuthentication();
             services.AddScoped<RoleManager<IdentityRole>>();
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<BookStoreDbContext>();
+            services.AddIdentity<User, IdentityRole>(
+            //x =>
+            //{
+            //    x.Password.RequireDigit = ,
+
+            //}
+            //Here i can set different kind of properties for password, user or the number of attempts to authorize ond etc.
+            ).AddEntityFrameworkStores<BookStoreDbContext>();
             services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddScoped<IRepository<Book>, SqlBookRepository>();
             services.AddScoped<IRepository<Carousel>, SqlCarouselRepository>();

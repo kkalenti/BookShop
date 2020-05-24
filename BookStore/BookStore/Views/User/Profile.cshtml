@@ -1,0 +1,48 @@
+﻿@model BookStore.ViewModels.User.UserViewModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+        <div class="container h-100">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Update user data</h1>
+                                </div>
+                                <div asp-validation-summary="ModelOnly" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></div>
+                                <form asp-action="Profile" class="user">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input asp-for="FirstName" class="form-control form-control-user" placeholder="First Name">
+                                            <span asp-validation-for="FirstName" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input asp-for="LastName" class="form-control form-control-user" placeholder="Last Name" required="required">
+                                            <span asp-validation-for="LastName" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="Email" class="form-control form-control-user" placeholder="Email address" required="required">
+                                        <span asp-validation-for="Email" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="Phone" class="form-control form-control-user" placeholder="Phone">
+                                        <span asp-validation-for="Phone" class="text-xs font-weight-bold text-warning text-uppercase mb-1"></span>
+                                    </div>
+                                    <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
+                                </form>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+

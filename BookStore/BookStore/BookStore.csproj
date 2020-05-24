@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Diag\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 

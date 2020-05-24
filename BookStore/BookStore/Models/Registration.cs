@@ -11,7 +11,6 @@ namespace BookStore.Models
         /// </summary>
         public int Id { get; set; }
 
-
         /// <summary>
         /// First name for user
         /// </summary>

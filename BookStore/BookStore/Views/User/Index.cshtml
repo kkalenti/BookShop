@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BookStore.ViewModels.User.UserViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+<h1>UserList</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.Id)
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { Name = item.Name }) |*@
+                    <a asp-action="Details" asp-controller="User" asp-route-id="@item.Id" title="Details">
+                        <span class="fa fa-th-list">
+                        </span>
+                    </a> |
+                    <a asp-action="Delete" asp-controller="User" asp-route-id="@item.Id" title="Delete">
+                        <span class="fa fa-times">
+                        </span>
+                    </a>
+                    @*@Html.ActionLink("Delete", "Delete", new { Name = item.Name })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
