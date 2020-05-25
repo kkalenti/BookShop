@@ -48,7 +48,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                return Ok(_bookRepository.Get(id));
+                return Ok(_bookRepository.Get(model => model.Id == id).FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                var deletedBook = _bookRepository.Get(id);
+                var deletedBook = _bookRepository.Get(model => model.Id == id).FirstOrDefault();
                 if (deletedBook != null)
                 {
                     _bookRepository.Delete(deletedBook);

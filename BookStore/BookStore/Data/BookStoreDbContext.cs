@@ -12,6 +12,8 @@ namespace BookStore.Data
 
         public DbSet<Book> Books { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         public DbSet<Carousel> Carousels { get; set; }
 
         public DbSet<Order> Orders { get; set; }

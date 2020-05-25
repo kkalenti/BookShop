@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BookStore.Data;
 using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
@@ -16,14 +17,9 @@ namespace BookStore.Services
             _context = context;
         }
 
-        public Carousel Get(int id)
+        public IEnumerable<Carousel> Get(Expression<Func<Carousel, bool>> filter, string includeProperties = "")
         {
-            if (_context.Carousels.Count(x => x.Id == id) > 0)
-            {
-                return _context.Carousels.Include(c => c.Section).FirstOrDefault(x => x.Id == id);
-            }
-
-            return null;
+            return _context.Carousels.Include(c => c.Section).Where(filter);
         }
 
         public IEnumerable<Carousel> GetAll()
@@ -49,7 +45,7 @@ namespace BookStore.Services
         {
             try
             {
-                var carousel = Get(item.Id);
+                var carousel = Get(model => model.Id == item.Id).FirstOrDefault();
                 if (carousel != null)
                 {
                     _context.Remove(carousel);

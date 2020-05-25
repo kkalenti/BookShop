@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BookStore.Data;
 using BookStore.Models;
 
@@ -15,13 +16,9 @@ namespace BookStore.Services
             _context = context;
         }
 
-        public Book Get(int id)
+        public IEnumerable<Book> Get(Expression<Func<Book, bool>> filter, string includeProperties = "")
         {
-            if(_context.Books.Count(x=>x.Id == id) > 0) {
-                return _context.Books.FirstOrDefault(x => x.Id == id);
-            }
-
-            return null;
+            return _context.Books.Where(filter);
         }
 
         public IEnumerable<Book> GetAll()
@@ -47,7 +44,7 @@ namespace BookStore.Services
         {
             try
             {
-                var book = Get(item.Id);
+                var book = Get(model => model.Id == item.Id).FirstOrDefault();
                 if (book != null)
                 {
                     _context.Remove(book);
@@ -67,7 +64,7 @@ namespace BookStore.Services
             //TODO: 
             try
             {
-                var book = Get(item.Id);
+                var book = Get(model => model.Id == item.Id).FirstOrDefault();
                 if (book != null)
                 {
                     book.Author = item.Author;

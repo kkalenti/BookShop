@@ -44,6 +44,7 @@ namespace BookStore
             services.AddScoped<IRepository<Order>, SqlOrderRepository>();
             services.AddScoped<IRepository<Section>, SqlSectionRepository>();
             services.AddScoped<IRepository<Country>, MockCountryRepository>();
+            services.AddScoped<IRepository<Comment>, SqlCommentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

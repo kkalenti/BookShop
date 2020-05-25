@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BookStore.Models;
 
 namespace BookStore.Services
@@ -34,9 +35,10 @@ namespace BookStore.Services
             });
         }
 
-        public Carousel Get(int id)
+        public IEnumerable<Carousel> Get(Expression<Func<Carousel, bool>> filter = null, string includeProperties = "")
         {
-            return _carousels.FirstOrDefault(x => x.Id == id);
+            //return _carousels.FirstOrDefault(x => x.Id == id);
+            return null;
         }
 
         public IEnumerable<Carousel> GetAll()

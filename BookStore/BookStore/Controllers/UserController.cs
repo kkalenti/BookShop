@@ -168,7 +168,6 @@ namespace BookStore.Controllers
         //    }
         //}
 
-        [Authorize(Roles = "User")]
         [HttpGet]
         public async Task<ViewResult> Profile()
         {

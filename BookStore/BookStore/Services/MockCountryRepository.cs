@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using BookStore.Models;
 
@@ -8,7 +9,7 @@ namespace BookStore.Services
 {
     public class MockCountryRepository : IRepository<Country>
     {
-        public Country Get(int id)
+        public IEnumerable<Country> Get(Expression<Func<Country, bool>> filter = null, string includeProperties = "")
         {
             throw new NotImplementedException();
         }

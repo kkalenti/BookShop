@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using BookStore.Data;
 using BookStore.Models;
 
@@ -13,7 +15,7 @@ namespace BookStore.Services
             _context = context;
         }
 
-        public Country Get(int id)
+        public IEnumerable<Country> Get(Expression<Func<Country, bool>> filter, string includeProperties = "")
         {
             throw new System.NotImplementedException();
         }

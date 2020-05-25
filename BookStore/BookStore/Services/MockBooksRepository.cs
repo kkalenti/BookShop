@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BookStore.Models;
 
 namespace BookStore.Services
@@ -121,9 +122,10 @@ namespace BookStore.Services
 
         }
 
-        public Book Get(int id)
+        public IEnumerable<Book> Get(Expression<Func<Book, bool>> filter = null, string includeProperties = "")
         {
-            return _books.FirstOrDefault(x => x.Id == id);
+            //return _books.FirstOrDefault(x => x.Id == id);
+            return null;
         }
 
         public IEnumerable<Book> GetAll()

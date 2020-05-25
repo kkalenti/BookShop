@@ -47,7 +47,7 @@ namespace BookStore.Controllers
             {
                 return NotFound();
             }
-            var order = _orderRepository.Get(id.Value);
+            var order = _orderRepository.Get(model => model.Id == id.Value).FirstOrDefault();
             if (order == null)
             {
                 return NotFound();
@@ -63,7 +63,7 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-            var order = _orderRepository.Get(id.Value);
+            var order = _orderRepository.Get(model => model.Id == id.Value).FirstOrDefault();
             if (order == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                var order = _orderRepository.Get(id);
+                var order = _orderRepository.Get(model => model.Id == id).FirstOrDefault();
                 _orderRepository.Delete(order);
             }
             catch (Exception ex)

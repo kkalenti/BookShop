@@ -1,23 +1,82 @@
-﻿@model Book
+﻿@model DetailsViewModel
+
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    .comments ul ul {
+        margin-left: 60px;
+    }
+
+    .comments .comment img {
+        margin-right: 20px;
+    }
+
+    .comments .comment {
+        padding: 6px;
+    }
+
+    .comments .comment:hover {
+        background: #eee;
+    }
+</style>
+@*<link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css" />*@
 
 <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">@Model.Title</h1>
-        <h5>$@Model.Price</h5>
+        <h1 class="jumbotron-heading">@Model.Book.Title</h1>
+        <h5>$@Model.Book.Price</h5>
     </div>
 </section>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4">
-            <img src="~/Images/@Model.Image" class="img-fluid" alt="@Model.Title image" />
+        <div class="col-sm-4 col-lg-4">
+            <img src="~/Images/@Model.Book.Image" class="img-fluid" alt="@Model.Book.Title image" />
         </div>
-        <div class="col-lg-8">
-            <p>@Model.Description</p>
-            <a class="btn btn-lg btn-primary" href="/home/order/@Model.Id">Buy</a>
+        <div class="col-sm-8 col-lg-8 mt-sm-0 mt-5">
+            <p>@Model.Book.Description</p>
+            <a class="btn btn-lg btn-primary" href="/home/order/@Model.Book.Id">Buy</a>
         </div>
     </div>
 </div>
 
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Comments:
+                </div>
+                <div class="card-body comments">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-action="Details" asp-controller="Home">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <textarea asp-for="NewComment.Text" type="text" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="NewComment.Text" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="New comment" class="btn btn-info pull-right"/>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <hr>
+                    }
+                    <ul class="list-unstyled">
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="media comment">
+                                <img class="rounded-circle" src="https://source.unsplash.com/3Bq5lBO1NsU/64x64" alt="Media object image" />
+                                <div class="media-body">
+                                    <h5 class="mt-0">@comment.User.FirstName @comment.User.LastName</h5>
+                                    @comment.Text
+                                </div>
+                            </div>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /.container -->

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using BookStore.Models;
 using BookStore.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace BookStore.Controllers
@@ -14,11 +18,13 @@ namespace BookStore.Controllers
     {
         private readonly IRepository<Book> _bookRepository;
         private readonly ILogger<BooksController> _logger;
+        private readonly IWebHostEnvironment _environment;
 
-        public BooksController(IRepository<Book> bookRepository, ILogger<BooksController> logger)
+        public BooksController(IRepository<Book> bookRepository, ILogger<BooksController> logger, IWebHostEnvironment environment)
         {
             _bookRepository = bookRepository;
             _logger = logger;
+            _environment = environment;
         }
 
         // GET: Books
@@ -35,7 +41,7 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-            var book = _bookRepository.Get(id.Value);
+            var book = _bookRepository.Get(model => model.Id == id.Value).FirstOrDefault();
             if (book == null)
             {
                 return NotFound();
@@ -52,7 +58,7 @@ namespace BookStore.Controllers
         // POST: Books/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Book book)
+        public async Task<ActionResult> Create(Book book)
         {
             try
             {
@@ -77,7 +83,7 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-            var book = _bookRepository.Get(id.Value);
+            var book = _bookRepository.Get(model => model.Id == id.Value).FirstOrDefault();
             if (book == null)
             {
                 return NotFound();
@@ -119,7 +125,7 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-            var book = _bookRepository.Get(id.Value);
+            var book = _bookRepository.Get(model => model.Id == id.Value).FirstOrDefault();
             if (book == null)
             {
                 return NotFound();
@@ -135,7 +141,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                var book = _bookRepository.Get(id);
+                var book = _bookRepository.Get(model => model.Id == id).FirstOrDefault();
                 _bookRepository.Delete(book);
             }
             catch(Exception ex)

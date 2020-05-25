@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace BookStore.Services
@@ -10,8 +12,9 @@ namespace BookStore.Services
         /// Retrieves one item from repository
         /// </summary>
         /// <param name="id">Element id</param>
+        /// <param name="filter">Filter for query</param>
         /// <returns>Element that matches the id</returns>
-        T Get(int id);
+        IEnumerable<T> Get(Expression<Func<T, bool>> filter, string includeProperties = "");
 
         /// <summary>
         /// Retrieves all items from repository 

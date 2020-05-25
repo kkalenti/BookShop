@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace BookStore.Models
 {
@@ -49,6 +52,9 @@ namespace BookStore.Models
         /// Binding entity for <see cref="Book"/> and <see cref="Section"/> classes
         /// </summary>
         public List<BookSection> BookSection { get; set; }
+
+        [NotMapped]
+        public IFormFileCollection ImageFile { get; set; }
 
         /// <summary>
         /// Constructor of the <see cref="Book"/> class

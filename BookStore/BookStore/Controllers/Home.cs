@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using BookStore.Models;
 using BookStore.Services;
@@ -35,17 +36,20 @@ namespace BookStore.Controllers
 
         private readonly UserManager<User> _userManager;
 
+        private readonly IRepository<Comment> _commentRepository;
+
         /// <summary>
         /// Constructor for <see cref="HomeController"/> class
         /// </summary>
         public HomeController(IRepository<Book> book, IRepository<Carousel> carousel, IRepository<Order> order,
-            IRepository<Section> section, UserManager<User> userManager)
+            IRepository<Section> section, UserManager<User> userManager, IRepository<Comment> commentRepository)
         {
             _bookRepo = book;
             _carouselRepo = carousel;
             _ordersRepo = order;
             _sectionsRepo = section;
             _userManager = userManager;
+            _commentRepository = commentRepository;
         }
 
         /*/// <summary>
@@ -122,15 +126,44 @@ namespace BookStore.Controllers
         /// Book details page
         /// </summary>
         /// <returns>Contact view</returns>
-        public IActionResult Details(int id)
+        [HttpGet]
+        public ViewResult Details(int id)
         {
-            var book = _bookRepo.Get(id);
-            return View(book);
+            var book = _bookRepo.Get(bookModel => bookModel.Id == id).FirstOrDefault();
+            var comments = _commentRepository.Get(filter: commentModel => commentModel.Book.Id == book.Id, "User").ToList();
+            var model = new DetailsViewModel()
+            {
+                Book = book,
+                Comments = comments
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ViewResult> Details(int id, DetailsViewModel details)
+        {
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var comment = details.NewComment;
+            var book = _bookRepo.Get(bookModel => bookModel.Id == id).FirstOrDefault();
+
+            comment.User = user;
+            comment.Book = book;
+
+            _commentRepository.Create(comment);
+
+            var comments = _commentRepository
+                .Get(filter: commentModel => commentModel.Book.Id == book.Id, "User").ToList();
+            var model = new DetailsViewModel()
+            {
+                Book = book,
+                Comments = comments
+            };
+            return View(model);
         }
 
         public IActionResult SectionDetails(int id)
         {
-            var section = _sectionsRepo.Get(id);
+            var section = _sectionsRepo.Get(model => model.Id == id).FirstOrDefault();
             return View(section);
         }
 
@@ -141,7 +174,7 @@ namespace BookStore.Controllers
             {
                 var model = new OrderViewModel()
                 {
-                    BookToOrder = _bookRepo.Get((int)id),
+                    BookToOrder = _bookRepo.Get(model => model.Id == id.Value).FirstOrDefault(),
                     OrderDetails = new Order()
                     {
                         BookId = (int)id,
@@ -184,7 +217,7 @@ namespace BookStore.Controllers
                 return View(new OrderViewModel()
                 {
                     OrderDetails = orderDetails,
-                    BookToOrder = _bookRepo.Get(id)
+                    BookToOrder = _bookRepo.Get(model => model.Id == id).FirstOrDefault()
                 });
             }
         }

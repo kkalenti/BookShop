@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BookStore.Data;
 using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
@@ -16,15 +17,10 @@ namespace BookStore.Services
             _context = context;
         }
 
-        public Order Get(int id)
+        public IEnumerable<Order> Get(Expression<Func<Order, bool>> filter, string includeProperties = "")
         {
-            if (_context.Orders.Count(x => x.Id == id) > 0)
-            {
-                return _context.Orders.Include(x => x.User)
-                    .Include(x => x.Book).FirstOrDefault(x => x.Id == id);
-            }
-
-            return null;
+            return _context.Orders.Include(x => x.User)
+                .Include(x => x.Book).Where(filter);
         }
 
         public IEnumerable<Order> GetAll()
@@ -50,7 +46,7 @@ namespace BookStore.Services
         {
             try
             {
-                var order = Get(item.Id);
+                var order = Get(model => model.Id == item.Id).FirstOrDefault();
                 if (order != null)
                 {
                     _context.Remove(order);
